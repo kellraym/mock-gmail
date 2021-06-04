@@ -1,6 +1,7 @@
 import './App.css';
 import React from 'react';
 import FetchEmail from './Component/FetchEmail';
+import SendEmail from './Component/SendEmail'
 
 
 
@@ -80,8 +81,8 @@ class App extends React.Component {
       <div>
         <h1>it works</h1>
         <FetchEmail />
-        
-        <input type="button" onClick={this.open} value="Compose email"/>
+        <SendEmail index={}/>
+        {/* <input type="button" onClick={this.open} value="Compose email"/>
         <div id="sendModal" className="sendModal hidden">
           <div className="modal-content">
             <span className="close" onClick={this.close}>&times;</span>
@@ -96,7 +97,8 @@ class App extends React.Component {
               </form>
             </div>
           </div>
-        </div>
+        </div> */}
+      </div>
     )
 
   }
