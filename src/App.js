@@ -1,5 +1,6 @@
 import './App.css';
 import React from 'react';
+import FetchEmail from './Component/FetchEmail';
 
 
 
@@ -13,25 +14,25 @@ class App extends React.Component {
       currentEmail: {},
     }
 
-    this.displayEmail = this.displayEmail.bind(this);
+    // this.displayEmail = this.displayEmail.bind(this);
     this.getEmail = this.getEmail.bind(this);
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
     this.post = this.post.bind(this);
   }
 
-  async componentDidMount() {
-    fetch("http://localhost:3001/emails")
-      .then(response => response.json())
-      .then(json => this.setState({ emails: json }))
-      .then(() => console.log(this.state.emails[0].sender))
-  }
+  // async componentDidMount() {
+  //   fetch("http://localhost:3001/emails")
+  //     .then(response => response.json())
+  //     .then(json => this.setState({ emails: json }))
+  //     .then(() => console.log(this.state.emails[0].sender))
+  // }
 
-  displayEmail() {
-    return this.state.emails.map((email, ind) => {
-      return <li><a id={ind} onClick={this.getEmail} >{email.subject} {email.sender}</a></li>
-    })
-  }
+  // displayEmail() {
+  //   return this.state.emails.map((email, ind) => {
+  //     return <li><a id={ind} onClick={this.getEmail} >{email.subject} {email.sender}</a></li>
+  //   })
+  // }
 
   getEmail(event) {
     let index = event.target.id
@@ -63,8 +64,7 @@ class App extends React.Component {
 
   // href={`http://localhost:3001/emails/${ind + 1}`}
 
-  open(event) {
-    console.log(event);
+  open() {
     document.getElementById("modal").classList.remove(`hidden`);
     // document.getElementById("sendModal").classList.remove(`hidden`);
   }
@@ -79,20 +79,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>it works</h1>
-        <ol>{this.displayEmail()}</ol>
-
-
-        <div id="modal" className="modal hidden">
-          <div className="modal-content">
-            <span className="close" onClick={this.close}>&times;</span>
-            <div className="modalEmail"></div>
-            <div>
-              <h2>{email.subject}</h2>
-              <h3>Sender: {email.sender}  Recipient: {email.recipient}  Date: {email.date}</h3>
-              <p>Body: {email.message}</p>
-            </div>
-          </div>
-        </div>
+        <FetchEmail />
         
         <input type="button" onClick={this.open} value="Compose email"/>
         <div id="sendModal" className="sendModal hidden">
